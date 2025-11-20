@@ -1,0 +1,18 @@
+2. Descrierea Setului de Date
+
+### 2.1 Sursa datelor
+
+* **Origine:** [Descriere sursă date - ex: senzori robot, dataset public, simulare]
+* **Modul de achiziție:**  Fișier extern Source link: https://www.kaggle.com/datasets/kmader/skin-cancer-mnist-ham10000?select=HAM10000_images_part_1
+* **Perioada / condițiile colectării:** [Ex: Noiembrie 2024 - Ianuarie 2025, condiții experimentale specifice]
+
+### 2.2 Caracteristicile dataset-ului
+
+* **Număr total de observații:** 40
+* **Număr de caracteristici (features):** [Ex: 12]
+* **Tipuri de date:**  ☐ Imagini
+* **Format fișiere:** ☐ JPG 
+
+### 2.3 Descrierea fiecărei caracteristici
+
+| **Caracteristică** | **Tip** | **Unitate** | **Descriere** | **Domeniu valori** |
