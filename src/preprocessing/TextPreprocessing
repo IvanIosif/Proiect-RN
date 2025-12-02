@@ -1,0 +1,18 @@
+import re
+import string
+import nltk
+import spacy
+
+languageProcesor= spacy.load("ro_core_news_sm")
+
+def procesingText(text):
+    text = text.lower()
+    text = re.sub(r'[0-9]+', '', text)
+    text = text.translate(str.maketrans('', '', string.punctuation))
+    docText = languageProcesor(text)
+    tokens_lematised = [token.lemma_ for token in docText]
+    return text
+
+text = input()
+tokens = procesingText(text)
+print(tokens)
