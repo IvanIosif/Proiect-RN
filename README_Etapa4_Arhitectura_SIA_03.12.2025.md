@@ -35,7 +35,7 @@ Această etapă corespunde punctului **5. Dezvoltarea arhitecturii aplicației s
 
 ### 1. Tabelul Nevoie Reală → Soluție SIA → Modul Software (max ½ pagină)
 Completați in acest readme tabelul următor cu **minimum 2-3 rânduri** care leagă nevoia identificată în Etapa 1-2 cu modulele software pe care le construiți (metrici măsurabile obligatoriu):
-
+```text
 | **Nevoie reală concretă**     | **Cum o rezolvă SIA-ul vostru**     | **Modul software responsabil** |
 |------------------------------ |-------------------------------------|--------------------------------|
 | Clasificare radiografii       | Clasificare imagine →               |        RN(python)
@@ -52,7 +52,7 @@ upload imagine și input text   | în format JSON/CSV                        |Mo
                                | Acces rapid pentru analiza viitoare       |
                                | (< 1 sec per query)                       |
 
-
+```
 
 **Instrucțiuni:**
 - Fiți concreti (nu vagi): "detectare fisuri sudură" ✓, "îmbunătățire proces" ✗
