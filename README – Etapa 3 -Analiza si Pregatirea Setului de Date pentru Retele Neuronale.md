@@ -43,7 +43,11 @@ project-name/
 
 Origine: Generare programatică bazată pe un profil clinic predefinit. Din cauza restricțiilor de confidențialitate (GDPR), s-a optat pentru simularea algoritmică a datelor.
 
-Mecanismul de profilare: Generarea nu a fost pur aleatorie, ci bazată pe matrice de probabilitate. Pentru fiecare boală, s-au definit simptome "ancoră" (ex: scădere în greutate pentru Tuberculoză) care au o probabilitate statistică mai mare (~75%) de a primi valori de 4 sau 5 pe scara Likert.
+Generarea datelor nu a fost pur aleatorie, ci bazată pe matrice de probabilitate corelate cu indicatori clinici specifici (Tag-uri P/T). Spre deosebire de o simplă scală de intensitate, modelul de generare a atribuit ponderi specifice fiecărei opțiuni de răspuns:
+
+Simptome Diferențiatoare: S-au definit tag-uri (P) pentru Pneumonie și (T) pentru Tuberculoză chiar și pentru valori scăzute ale scalei Likert (ex: Q1 - Febra Normală indică o probabilitate mai mare pentru Tuberculoză în acest context probabilistic).
+
+Logica de distribuție: Pentru fiecare boală, probabilitatea de selecție a unei opțiuni a fost de ~60% dacă tag-ul opțiunii coincidea cu diagnosticul, asigurând un dataset care forțează modelul să învețe nuanțe clinice, nu doar severitatea simptomelor.
 
 Simularea Ambiguității: S-a introdus zgomot statistic controlat pentru a simula pacienți atipici, forțând modelul să identifice pattern-uri complexe, nu doar reguli simple.
 
@@ -60,27 +64,27 @@ Tipuri de date: Numerice (Scara Likert 1–5).
 Format: CSV.
 
 ### 2.3 Descrierea fiecărei caracteristici
-ID                 Întrebare                                                       Opțiuni (Scara 1-5)
-Q1,Cât de ridicată este febra?,                                   "Normală, Ușoară (P), Moderată (P), Ridicată (P), Foarte ridicată (P)"
-Q2,Cât de capabil te simți să întreprinzi activități normale?,    "Foarte puțin, Puțin (P), Moderat (P), Mult (T), Foarte mult (T)"
-Q3,Cât de dificil este pentru tine să respiri?,                   "Deloc, Foarte puțin (P), Moderat (P), Semnificativ (T), Foarte greu (T)"
-Q4,Cât de mult durează un episod de tuse?,                        "Sub 10s, 10-30s(P), 30s-2m(P), 2-4 min (T), >4 min (T)"
-Q5,Cât de frecvent îți vine să tușești?,                          "Foarte rar, Ocazional (P), Moderat (P), Frecvent (T), Foarte frecvent (T)"
-Q6,Cât de puternic simți durerea în piept?,                       "Deloc, Ușor (P), Moderat (P), Intens (P), Foarte intens (P)"
-Q7,"Cât de productivă este tusea ta?,                             "Deloc, Foarte puțin (P), Moderată (P), Multă (P), Foarte multă (P)"
-Q8,Cum resimți frisoanele?,                                       "Deloc, Ușor (P), Moderat (P), Puternic (P), Foarte puternic (T)"
-Q9,Cât de des ai dureri de cap?,                                  "Niciodată, Rareori (P), Uneori (P), Des (P), Foarte des (T)"
-Q10,Cât de intensă este durerea ta musculară?,                    "Deloc, Ușoară (P), Moderată (P), Puternică (P), Foarte puternică (P)"
-Q11,Cât de des transpiri în timpul nopții?,                       "Niciodată, Foarte rar (P), Ocazional (P), Frecvent (T), Permanent (T)"
-Q12,Cât de mult te incomodează să respiri întins pe spate?,       "Deloc, Foarte puțin (P), Moderat (P), Mult (T), Foarte Mult (T)"
-Q13,Cât de des ai greață și/sau dureri abdominale?,               "Niciodată, Rareori (P), Ocazional (P), Frecvent (P), Foarte frecvent (P)"
-Q14,Cât de pronunțată este pierderea gustului/mirosului?,         "Deloc, Foarte ușoară (P), Moderată (P), Pronunțată (P), Foarte pronunțată (P)"
-Q15,Câte kg ai pierdut în ultimele 3 luni?,                       "Niciun kg, 1–2 kg (P), 3–5 kg (P), 6–10 kg (T), >10 kg (T)"
-Q16,Câte episoade de tuse au fost cu sânge?,                      "Niciunul, Foarte puține (P), Puține (P), Multe (T), Foarte multe (T)"
-Q17,Cât de mult efort depui la respirație?,                       "Deloc, Foarte puțin (P), Moderat (P), Mult (T), Foarte mult (T)"
-Q18,Cât de des ai avut ganglionii gâtului inflamaț                "Niciodată, Foarte rar (P), Ocazional (P), Frecvent (P), Permanent (P)"
-Q19,Cât de mult ți s-a redus pofta de mâncare?                    "Deloc, Foarte puțin (P), Moderată (P), Foarte mult (T), Nu mai mănânc (T)"
-Q20,Cât de des ai avut febră intermitentă?,                       "Niciodată, Foarte rar (P), Ocazional (P), Des (P), Foarte Des (T)"
+IDÎntrebareOpțiuni (Scara 1-5)
+Q1Cât de ridicată este febra?Normală(T), Ușoară (P), Moderată (P), Ridicată (P), Foarte ridicată (P)
+Q2Capabilitatea de a întreprinde activități normale?Foarte puțin(P), Puțin (P), Moderat (P), Mult (T), Foarte mult (T)
+Q3Dificultate în respirație?Deloc(T), Foarte puțin (P), Moderat (P), Semnificativ (T), Foarte greu (T)
+Q4Durata unui episod de tuse?Sub 10 secunde(P), 10-30 sec(P), 30 sec-2 min(P), 2-4 min (T), >4 min (T)
+Q5Frecvența tusei?Foarte rar(P), Ocazional (P), Moderat (P), Frecvent (T), Foarte frecvent (T)
+Q6Intensitatea durerii în piept?Deloc(P), Ușor (P), Moderat (P), Intens (P), Foarte intens (P)
+Q7Productivitatea tusei?Deloc(T), Foarte puțin (P), Moderată (P), Multă (P), Foarte multă (P)
+Q8Intensitatea frisoanelor?Deloc, Ușor (P), Moderat (P), Puternic (P), Foarte puternic (T)
+Q9Frecvența durerilor de cap?Niciodată(T), Rareori (P), Uneori (P), Des (P), Foarte des (T)
+Q10Intensitatea durerii musculare?Deloc(P), Ușoară (P), Moderată (P), Puternică (P), Foarte puternică (P)
+Q11Transpirații nocturne?Niciodată, Foarte rar (P), Ocazional (P), Frecvent (T), Permanent (T)
+Q12Respirația dificilă întins pe spate?Deloc(P), Foarte puțin (P), Moderat (P), Mult (T), Foarte Mult (T)
+Q13Greață și/sau dureri abdominale?Niciodată(T), Rareori (P), Ocazional (P), Frecvent (P), Foarte frecvent (P)
+Q14Pierderea gustului/mirosului?Deloc(T), Foarte ușoară (P), Moderată (P), Pronunțată (P), Foarte pronunțată (P)
+Q15Scăderea în greutate (3 luni)?Niciun kg(P), 1–2 kg (P), 3–5 kg (P), 6–10 kg (T), >10 kg (T)
+Q16Episoade de tuse cu sânge?Niciunul(P), Foarte puține (P), Puține (P), Multe (T), Foarte multe (T)
+Q17Efort depus la respirație?Deloc(P), Foarte puțin (P), Moderat (P), Mult (T), Foarte mult (T)
+Q18Inflamația ganglionilor gâtului?Niciodată(T), Foarte rar (P), Ocazional (P), Frecvent (P), Permanent (P)
+Q19Reducerea poftei de mâncare?Deloc(P), Foarte puțin (P), Moderată (P), Foarte mult (T), Nu mai mănânc (T)
+Q20Frecvența febrei intermitente?Niciodată(P), Foarte rar (P), Ocazional (P), Des (P), Foarte Des (T)
 **Fișier recomandat:**  `data/README.md`
 
 ---
